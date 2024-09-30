@@ -10,39 +10,6 @@ This project is a Solana-based token launchpad, a platform facilitating the crea
 * **Token Management:** Provides tools to update token metadata, view balances, and control distribution.
 * **Token Launch:** Enables users to launch tokens for public sale, setting parameters like start and end times, pricing, and distribution mechanisms.
 * **Wallet Integration:** Supports various Solana wallets for seamless interaction and transaction signing.
-
-## Installation
-
-This project utilizes `npm` for package management. To install dependencies, run:
-
-```bash
-npm install
-```
-
-## Usage
-
-1. **Start Development Server:**
-
-   ```bash
-   npm run dev
    ```
 
-2. **Build for Production:**
-
-   ```bash
-   npm run build
-   ```
-
-3. **Run Tests:**
-
-   ```bash
-   npm run test
-   ```
-
-## Contact Information
-
-For any inquiries or feedback, please contact:
-
-* **Email:** [your-email@example.com]
-* **Website:** [your-website.com]
 
