@@ -1,0 +1,117 @@
+    //this takes 3 sign but the below one will take only one sign
+    // const handleCreateToken = async () => {
+    //     setLoading(true);
+    //     try {
+    //         if (!wallet || !wallet.publicKey) {
+    //             throw new Error('Wallet not connected');
+    //         }
+
+    //         const mintKeypair = Keypair.generate();
+    //         const metadata = {
+    //             mint: mintKeypair.publicKey,
+    //             name: name,
+    //             symbol: symbol,
+    //             uri: "https://cdn.100xdevs.com/metadata.json",
+    //             additionalMetadata: [],
+    //         };
+
+    //         const mintLen = getMintLen([ExtensionType.MetadataPointer]);
+    //         const metadataLen = TYPE_SIZE + LENGTH_SIZE + pack(metadata).length;
+    //         const lamports = await connection.getMinimumBalanceForRentExemption(mintLen + metadataLen);
+            
+    //         //first transaction which contains
+    //         //1st instruction create mint
+    //         //2nd create meatadata pointer for this mint
+    //         //3rd intialize this min
+    //         //4th add metadata to this mint
+
+    //         const transaction1 = new Transaction().add(
+    //             SystemProgram.createAccount({
+    //                 fromPubkey: wallet.publicKey,
+    //                 newAccountPubkey: mintKeypair.publicKey,
+    //                 space: mintLen,
+    //                 lamports,
+    //                 programId: TOKEN_2022_PROGRAM_ID,
+    //             }),
+    //             createInitializeMetadataPointerInstruction(mintKeypair.publicKey, wallet.publicKey, mintKeypair.publicKey, TOKEN_2022_PROGRAM_ID),
+    //             createInitializeMintInstruction(mintKeypair.publicKey, 9, wallet.publicKey, null, TOKEN_2022_PROGRAM_ID),
+    //             createInitializeInstruction({
+    //                 programId: TOKEN_2022_PROGRAM_ID,
+    //                 mint: mintKeypair.publicKey,
+    //                 metadata: mintKeypair.publicKey,
+    //                 name: metadata.name,
+    //                 symbol: metadata.symbol,
+    //                 uri: metadata.uri,
+    //                 mintAuthority: wallet.publicKey,
+    //                 updateAuthority: wallet.publicKey,
+    //             }),
+    //         );
+            
+    //         //adding recent blocks should be must
+    //         transaction1.feePayer = wallet.publicKey;
+    //         transaction1.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
+
+    //         //for this transaction mint and wallet has to be sign
+    //         //partially sign using mintKeyPair (and leave for wallet)
+    //         transaction1.partialSign(mintKeypair);
+    
+    //         //complete sign from wallet
+    //         await wallet.sendTransaction(transaction1, connection);
+            
+
+    //         setStatus(`Token mint created at ${mintKeypair.publicKey.toBase58()}`);
+    //         setName('');
+    //         setDecimals('');
+    //         setImageUrl('');
+    //         setInitialSupply('');
+    //         setSymbol('');
+
+    //         //now we need to get the a Associated account (pda concept)
+    //         const associatedToken = getAssociatedTokenAddressSync(
+    //             mintKeypair.publicKey,
+    //             wallet.publicKey,
+    //             false,
+    //             TOKEN_2022_PROGRAM_ID,
+    //         );
+
+    //         setStatus(`Assosiated account is ctreated at ${associatedToken.toBase58()}`);
+            
+            
+    //         // now 2nd transaction
+    //         // 1st now create Assosiated account
+    //         //now we have to create a assosiated token account
+    //         const transaction2 = new Transaction().add(
+    //             createAssociatedTokenAccountInstruction(
+    //                 wallet.publicKey,
+    //                 associatedToken,
+    //                 wallet.publicKey,
+    //                 mintKeypair.publicKey,
+    //                 TOKEN_2022_PROGRAM_ID,
+    //             ),
+    //         );
+
+    //         //send the transatction
+    //         await wallet.sendTransaction(transaction2, connection);
+
+    //         //3rd trasaction
+    //         //now account is created and now we will actually mint  the token
+    //         const transaction3 = new Transaction().add(
+    //             createMintToInstruction(
+    //                 mintKeypair.publicKey, 
+    //                 associatedToken, 
+    //                 wallet.publicKey, //authority
+    //                 100000000000, 
+    //                 [], 
+    //                 TOKEN_2022_PROGRAM_ID
+    //             ),
+    //         );
+    
+    //         await wallet.sendTransaction(transaction3, connection);
+
+    //     } catch (error) {
+    //         console.error('Error creating token:', error);
+    //         setStatus(`Error: ${error.message}`);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
